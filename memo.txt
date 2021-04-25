@@ -1,0 +1,32 @@
+main.pyからFinger2Mouse.pyのFinger2Mouseを呼ぶときに,
+
+from Operation import Finger2Mouse
+f2m = Finger2Mouse()
+
+や,
+
+import Operation
+f2m = Operation.Finger2Mouse()
+
+と記述すると
+
+TypeError: 'module' object is not callable
+
+このようなエラーが出た。
+そこでFinger2Mouse.pyをfinger2mouse.pyに変更し
+
+from Operation import finger2mouse
+f2m = Finger2Mouse
+
+と記述すると
+
+cannot import name 'Finger2Mouse' from partially initialized module 'Operation'
+というふうにエラーが変わった。
+
+そこで,Operation/__init__.pyの書き方を
+
+from model.keypoint_classifier.keypoint_classifier import KeyPointClassifier
+
+と変えるとすんなり通った.
+
+importの仕方と__init__.pyファイルの書き方には気をつけよう,,,
